@@ -3,18 +3,23 @@ import veroviz as vrv
 import numpy as np
 import datetime
 
-#* valid preference values: 'min_time' (default) or 'min_walk'
-#* beta (default 140) is a tuning parameter bounded between 0 and 1. 
-      #It controls the penalty term in our function.
-      #if increased, the routes require more time will be punished more 
-      #and the value will converge to 0 more quickly. If you want to penalize 
-      #time more, decrease this term.
-#* time: format for time as follows: "HH:MM:SS"
-#* origin_id and destination_id: must be present in all_routes dataframe
-#* all_routes: dataframe. output from find_all_routes.py
-
-
-def route_preferences(all_routes, time, origin_id, destination_id, preference = 'min_time', beta = 140): 
+def route_preferences(all_routes: pd.DataFrame, time: str, origin_id: int, destination_id: int, preference: str = 'min_time', beta = 140):
+    '''
+    Parameters
+    ----------
+    preference: str
+        valid preference values: 'min_time' (default) or 'min_walk'
+    beta: int 
+        (default 140) is a tuning parameter bounded between 0 and 1. It controls the penalty term in our function. 
+        If increased, the routes require more time will be punished more and the value will converge to 0 more quickly.
+        If you want to penalize time more, decrease this term.
+    time: str
+        format for time as follows: "HH:MM:SS"
+    origin_id: int
+    destination_id: int
+    all_routes: pd.DataFrame
+        dataframe. output from find_all_routes.py
+    '''
     # Convert time string to datetime object
     time = datetime.datetime.strptime(time, "%H:%M:%S")
     #filter the routes based on the origin and destionation
