@@ -465,7 +465,7 @@ if __name__ == '__main__':
                                                       origin_id=origin_row['name'],
                                                       destination_id=destination_row['name'],
                                                       all_routes=routes,
-                                                      preference='min_walk',
+                                                      preference='min_time',
                                                       beta=140
                                                       )
                 best_routes = pd.concat([best_routes, these_best_routes])
